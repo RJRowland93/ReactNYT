@@ -45,11 +45,11 @@ app.get("/", function(req, res) {
 // A GET request to scrape the NYT website
 app.get("/scrape", function(req, res) {
 
-  request("https://www.reddit.com/r/nottheonion/", function(error, response, html) {
+  request("http://www.nytimes.com/pages/todayspaper/index.html#nytfrontpage", function(error, response, html) {
     // $ for a shorthand selector
     var $ = cheerio.load(html);
 
-    $("p.title").each(function(i, element) {
+    $("div.story").each(function(i, element) {
 
       // Save an empty result object
       var result = {};

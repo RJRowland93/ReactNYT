@@ -2,7 +2,16 @@
 var React = require("react");
 
 // Creating the Results component
-var Results = React.createClass({});
+export default class Results extends React.Component {
+	constructor() {
+		super();
+	}
 
-// Export the component back for use in other files
+	render() {
+		return (
+			<h2>Something</h2>
+		);
+	}
+}
+
 module.exports = Results;
