@@ -21,7 +21,7 @@ var app = express();
 app.use(express.static("public"));
 
 // Database configuration with mongoose
-mongoose.connect(Key);
+mongoose.connect(Key.MONGODB_URI);
 var db = mongoose.connection;
 
 // Show any mongoose errors
@@ -34,6 +34,10 @@ db.once("open", function() {
   console.log("Mongoose connection successful.");
 });
 
+// Main "/" Route. This will redirect the user to our rendered React application
+app.get("/", function(req, res) {
+  res.sendFile(__dirname + "/public/index.html");
+});
 
 // Routes
 
@@ -42,43 +46,6 @@ app.get("/", function(req, res) {
   res.send(index.html);
 });
 
-// A GET request to scrape the NYT website
-app.get("/scrape", function(req, res) {
-
-  request("http://www.nytimes.com/pages/todayspaper/index.html#nytfrontpage", function(error, response, html) {
-    // $ for a shorthand selector
-    var $ = cheerio.load(html);
-
-    $("div.story").each(function(i, element) {
-
-      // Save an empty result object
-      var result = {};
-
-      // Add the text and href of every link, and save them as properties of the result object
-      result.title = $(this).children("a").text();
-      result.link = $(this).children("a").attr("href");
-
-      var entry = new Article(result);
-
-      // If this title element had both a title and a link
-      if (result.title && result.link) {
-        // save that entry to the db
-      entry.save(function(err, doc) {
-        // Log any errors
-        if (err) {
-          console.log(err);
-        }
-        // Or log the doc
-        else {
-          console.log(doc);
-        }
-      });
-      }
-    });
-  });
-  // Tell the browser that we finished scraping the text
-  res.send("Scrape Complete");
-});
 
 // articles scraped from the mongoDB
 app.get("/articles", function(req, res) {

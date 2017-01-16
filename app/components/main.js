@@ -20,9 +20,9 @@ export default class Main extends React.Component {
 	  		<div className="container">
 		        <div className="row">
 		          <div className="jumbotron">
-		            <h2 className="text-center"></h2>
+		            <h2 className="text-center">New York Times Article Scrubber</h2>
 		            <p className="text-center">
-		              <em></em>
+		              <em>Search for and annotate articles of interest!</em>
 		            </p>
 		          </div>
 		        </div>
