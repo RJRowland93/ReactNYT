@@ -13,7 +13,12 @@ var helpers = require("./utils/helpers");
 export default class Main extends React.Component {
 	constructor() {
 		super();
-	}
+	},
+
+	getInitialState() {
+		return {searchTerm: "", history: []};
+	},
+
 	  // Here we render the function
 	  render() {
 	  	return (
@@ -28,15 +33,15 @@ export default class Main extends React.Component {
 		        </div>
 
 		       	<div className="row">
-		       		<Search />
+		       		<Search setTerm={this.setTerm} />
 		       	</div>
 
 		       	<div className="row">
-		       		<Results />
+		       		<Results history={this.state.history} />
 		       	</div>
 
 		       	<div className="row">
-		       		<Saved />
+		       		<Saved address={this.state.results} />
 		       	</div>	
 
 		      </div>
