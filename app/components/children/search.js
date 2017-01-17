@@ -2,7 +2,7 @@
 var React = require("react");
 
 // Creating the Results component
-export default class Search extends React.Component {
+class Search extends React.Component {
 	constructor() {
 		super();
 	}

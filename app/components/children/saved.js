@@ -2,7 +2,7 @@
 var React = require("react");
 
 // Creating the Results component
-export default class Saved extends React.Component {
+class Saved extends React.Component {
 	constructor() {
 		super();
 	}

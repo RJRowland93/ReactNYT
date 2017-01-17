@@ -10,7 +10,7 @@ var Saved = require("./children/saved");
 var helpers = require("./utils/helpers");
 
 // Creating the Main component
-export default class Main extends React.Component {
+class Main extends React.Component {
 	constructor() {
 		super();
 	},
